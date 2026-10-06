@@ -49,7 +49,7 @@ img, canvas { display: block; max-width: 100%; }
 /* hero */
 .hero { padding: 72px 0 40px; }
 .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.04; letter-spacing: -.035em; margin: 14px 0 0; font-weight: 600; }
-.hero h1 em { font-family: var(--font-serif); font-weight: 400; color: var(--accent); }
+.hero h1 em { font-style: normal; color: var(--accent); }
 .hero p.lead { max-width: 640px; color: var(--muted); font-size: 1.125rem; margin: 18px 0 26px; }
 .status { display: inline-flex; align-items: center; gap: 8px; font: .8125rem/1 var(--font-mono); color: var(--muted); }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 4px rgba(74, 222, 128, .15); }
