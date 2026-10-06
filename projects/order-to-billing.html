@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order-to-billing visibility with process mining · Alireza Esfandiari</title>
+<meta name="description" content="About 20% of closed-won orders in one product line never reached billing. Stitching four systems together showed where they stopped.">
+<link rel="canonical" href="https://alirezaesfa.github.io/projects/order-to-billing.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Order-to-billing visibility with process mining · Alireza Esfandiari"><meta property="og:description" content="About 20% of closed-won orders in one product line never reached billing. Stitching four systems together showed where they stopped.">
+<meta property="og:url" content="https://alirezaesfa.github.io/projects/order-to-billing.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07090d">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span>Alireza Esfandiari</a>
+  <ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a>
+</div></header>
+<main id="main"><div class="wrap">
+<a class="back" href="../index.html#projects">← All projects</a>
+<div class="p-head"><span class="eyebrow">TELUS · Revenue data · 2026</span><h1>Order-to-billing visibility with process mining</h1><p class="lead">A BI team had tried for about two years to connect order records across systems, so no one could see where unbilled orders were stuck. I found the way to stitch them together.</p><div class="tags"><span class="tag">Process mining</span><span class="tag">SQL</span><span class="tag">Data mapping</span><span class="tag">ETL</span><span class="tag">Oracle</span><span class="tag">BigQuery</span><span class="tag">Python</span><span class="tag">YAML</span><span class="tag">GitHub CI</span></div>
+<dl class="meta"><div><dt>Role</dt><dd>Business analyst</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Where</dt><dd>TELUS, B2B AI</dd></div><div><dt>Status</dt><dd>Proof of concept</dd></div></dl></div>
+<figure class="sim"><div class="sim-bar"><span>order_to_billing · simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
+<canvas data-sim="orders" id="replay" role="img" aria-label="Animated simulation: About 20% of closed-won orders in one product line never reached billing. Stitching four systems together showed where they stopped."></canvas>
+<div class="stats"><span>Billed<b id="st-billed">400</b></span><span>No billing record<b class="amber" id="st-stuck">100</b></span><span>Share unbilled<b class="amber" id="st-share">20%</b></span></div><figcaption>Simulated orders move from order entry to billing. One in five drops out at one of the three hand-offs and never gets a billing record, which is what the stitched event log made visible.</figcaption></figure>
+<div class="content"><div><h2>The problem</h2><p>Orders move through four core systems on their way from a closed-won deal to an invoice. Each system had its own keys, so there was no single view of an order's journey, and a share of orders silently never reached billing.</p><h2>What I did</h2><ul><li>Mapped data fields across the <strong>four core systems</strong>, upstream and downstream, by reading their data models with SQL.</li><li>Found a key identifier in the order-entry system and combined it with others to <strong>stitch records end to end</strong> and build an event log for process mining.</li><li>Built a nightly <strong>ETL pipeline</strong> (SQL, Python, YAML) from Oracle into BigQuery for two of the systems, deployed through a GitHub workflow with automated CI checks set up by the platform team.</li><li>Raised a data request that led another system team to build a <strong>new identifier</strong>, which the BI team now uses.</li></ul><h2>Result</h2><p>A proof of concept that traced a few hundred orders end to end and showed, for the first time, where about <strong>20% of closed-won orders</strong> in one product line stalled before billing.</p></div><aside class="aside"><div class="callout"><span class="big">20%</span>of closed-won orders in one product line never reached billing</div><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Process mining</span><span class="tag">SQL</span><span class="tag">Data mapping</span><span class="tag">ETL</span><span class="tag">Oracle</span><span class="tag">BigQuery</span><span class="tag">Python</span><span class="tag">YAML</span><span class="tag">GitHub CI</span></div></div></aside></div>
+<nav class="pager" aria-label="More projects"><a href="dashboards.html"><span>← Previous</span>Dashboards and SQL</a><a class="next" href="contract-migration.html"><span>Next →</span>AI contract review for a 12K-contract migration</a></nav>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>
+<span><a href="mailto:alireza1esfandiari@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/alireza-esfandiari-ae">LinkedIn</a> · <a href="https://github.com/Alirezaesfa">GitHub</a> · <a href="../Alireza_Esfandiari_Resume.pdf">Resume</a></span></div></footer>
+<script src="../assets/simkit.js"></script>
+<script src="../assets/sims_work.js"></script>
+<script src="../assets/sims_more.js"></script>
+</body></html>

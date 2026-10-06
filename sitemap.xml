@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://alirezaesfa.github.io/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://alirezaesfa.github.io/</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/order-to-billing.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/contract-migration.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/billing-adjustments.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/n8n-workflow.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/triage-agent.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/msc-thesis.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/fraud-detection.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/time-series.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/income-prediction.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/insurance-premiums.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/cloudmed.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/loan-decisioning.html</loc></url>
+  <url><loc>https://alirezaesfa.github.io/projects/dashboards.html</loc></url>
 </urlset>

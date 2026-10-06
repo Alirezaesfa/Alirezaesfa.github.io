@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI recommendations for billing adjustment reviews · Alireza Esfandiari</title>
+<meta name="description" content="Mapping the current and future state of a manual review process, and scoping an AI that recommends while people decide.">
+<link rel="canonical" href="https://alirezaesfa.github.io/projects/billing-adjustments.html">
+<meta property="og:type" content="website"><meta property="og:title" content="AI recommendations for billing adjustment reviews · Alireza Esfandiari"><meta property="og:description" content="Mapping the current and future state of a manual review process, and scoping an AI that recommends while people decide.">
+<meta property="og:url" content="https://alirezaesfa.github.io/projects/billing-adjustments.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07090d">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span>Alireza Esfandiari</a>
+  <ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a>
+</div></header>
+<main id="main"><div class="wrap">
+<a class="back" href="../index.html#projects">← All projects</a>
+<div class="p-head"><span class="eyebrow">TELUS · Billing operations · 2026</span><h1>AI recommendations for billing adjustment reviews</h1><p class="lead">Validators review every billing adjustment request by hand, pulling information from billing and contracting systems and internal privacy documents, so reviews are slow and the backlog is large.</p><div class="tags"><span class="tag">Process design</span><span class="tag">Current and future state</span><span class="tag">LLM</span><span class="tag">Excel</span><span class="tag">Human in the loop</span><span class="tag">Stakeholder management</span></div>
+<dl class="meta"><div><dt>Role</dt><dd>Business analyst, acting PM</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Where</dt><dd>TELUS, B2B AI</dd></div><div><dt>Status</dt><dd>In progress</dd></div></dl></div>
+<figure class="sim"><div class="sim-bar"><span>billing_adjustments · simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
+<canvas data-sim="billing" id="bar-sim" role="img" aria-label="Animated simulation: Mapping the current and future state of a manual review process, and scoping an AI that recommends while people decide."></canvas>
+<div class="stats"><span class="seg" role="group" aria-label="Show state"><button type="button" id="bar-cur" aria-pressed="false">Current</button><button type="button" id="bar-fut" aria-pressed="true">Future</button></span><span>Lookups<b id="bar-look">Automatic</b></span><span>Recommends<b id="bar-rec">AI</b></span><span>Decides<b>Validator</b></span></div><figcaption><span id="bar-cap-fut" class="cap-alt">Future state: billing, contract and privacy data is pulled automatically, the AI drafts a recommendation with reasons, and the validator still makes every decision.</span><span id="bar-cap-cur" class="cap-alt off">Current state: for every request, the validator looks up billing, contract and privacy information by hand before deciding.</span></figcaption></figure>
+<div class="content"><div><h2>What I did</h2><ul><li>Mapped how requests are <strong>created, reviewed and decided</strong>, with the subject matter experts who do the work.</li><li>Analyzed the 2025 request data in Excel and picked the <strong>top 5 request types</strong>, by impact, for the proof of concept.</li><li>Wrote the <strong>process design document</strong> for the future state, and coordinate the subject matter experts and the AI team.</li></ul><h2>Status</h2><p>The AI team is training the model on real use cases from subject matter experts. The goal is to help validators review faster by giving them a recommendation built from the data they would otherwise look up by hand. Validators will still make every decision. It's still in progress, so there are no results to claim yet.</p></div><aside class="aside"><div class="callout"><span class="big">Top 5</span>request types picked from the 2025 data to scope the proof of concept</div><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Process design</span><span class="tag">Current and future state</span><span class="tag">LLM</span><span class="tag">Excel</span><span class="tag">Human in the loop</span><span class="tag">Stakeholder management</span></div></div></aside></div>
+<nav class="pager" aria-label="More projects"><a href="contract-migration.html"><span>← Previous</span>AI contract review for a 12K-contract migration</a><a class="next" href="n8n-workflow.html"><span>Next →</span>Multi-agent workflow on n8n</a></nav>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>
+<span><a href="mailto:alireza1esfandiari@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/alireza-esfandiari-ae">LinkedIn</a> · <a href="https://github.com/Alirezaesfa">GitHub</a> · <a href="../Alireza_Esfandiari_Resume.pdf">Resume</a></span></div></footer>
+<script src="../assets/simkit.js"></script>
+<script src="../assets/sims_work.js"></script>
+<script src="../assets/sims_more.js"></script>
+</body></html>

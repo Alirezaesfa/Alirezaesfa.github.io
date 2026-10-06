@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Income prediction for customer targeting · Alireza Esfandiari</title>
+<meta name="description" content="Predicting who earns over $50K from US Census data, in Python with seven models and in SAS Enterprise Miner.">
+<link rel="canonical" href="https://alirezaesfa.github.io/projects/income-prediction.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Income prediction for customer targeting · Alireza Esfandiari"><meta property="og:description" content="Predicting who earns over $50K from US Census data, in Python with seven models and in SAS Enterprise Miner.">
+<meta property="og:url" content="https://alirezaesfa.github.io/projects/income-prediction.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07090d">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span>Alireza Esfandiari</a>
+  <ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a>
+</div></header>
+<main id="main"><div class="wrap">
+<a class="back" href="../index.html#projects">← All projects</a>
+<div class="p-head"><span class="eyebrow">MSc projects · 2022</span><h1>Income prediction for customer targeting</h1><p class="lead">Knowing which customers are likely to earn over $50K helps a business, like a premium insurer, target the right people. Two projects on the same Census data, two toolsets.</p><div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Decision trees</span><span class="tag">Neural networks</span><span class="tag">Feature selection</span><span class="tag">SAS Enterprise Miner</span></div>
+<dl class="meta"><div><dt>Role</dt><dd>Team member</dd></div><div><dt>When</dt><dd>2022</dd></div><div><dt>Where</dt><dd>MSc, Concordia</dd></div><div><dt>Data</dt><dd>US Census</dd></div></dl></div>
+<figure class="sim"><div class="sim-bar"><span>income_prediction · simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
+<canvas data-sim="income"  role="img" aria-label="Animated simulation: Predicting who earns over $50K from US Census data, in Python with seven models and in SAS Enterprise Miner."></canvas>
+<figcaption>A decision tree splits the data one rule at a time into regions of higher and lower income. Simulated data.</figcaption></figure>
+<div class="content"><div><h2>In Python (team of 3)</h2><ul><li>Built and compared <strong>seven classifiers</strong> on 32,561 records and 14 features: logistic regression, KNN, Gaussian naive Bayes, decision tree, SVM, a deep neural network and an autoencoder.</li><li>Ran <strong>feature selection</strong> by variance and retrained each model; the decision tree fit best, and the reduced-feature version was recommended because it needs less compute.</li></ul><h2>In SAS Enterprise Miner</h2><ul><li>Cleaned the 48,842-record dataset (missing-value markers, redundant variables) and compared <strong>five models</strong>, choosing the decision tree with the lowest misclassification rate.</li><li>Identified the strongest predictors: marital status, capital gains and losses, occupation, education, hours worked and age.</li></ul></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Decision trees</span><span class="tag">Neural networks</span><span class="tag">Feature selection</span><span class="tag">SAS Enterprise Miner</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Income-Prediction-Python">Python repository ↗</a><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Income-Prediction-SAS">SAS repository ↗</a></div></div></aside></div>
+<nav class="pager" aria-label="More projects"><a href="time-series.html"><span>← Previous</span>Time-series forecasting with deep learning</a><a class="next" href="insurance-premiums.html"><span>Next →</span>What drives life insurance premiums</a></nav>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>
+<span><a href="mailto:alireza1esfandiari@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/alireza-esfandiari-ae">LinkedIn</a> · <a href="https://github.com/Alirezaesfa">GitHub</a> · <a href="../Alireza_Esfandiari_Resume.pdf">Resume</a></span></div></footer>
+<script src="../assets/simkit.js"></script>
+<script src="../assets/sims_work.js"></script>
+<script src="../assets/sims_more.js"></script>
+</body></html>
