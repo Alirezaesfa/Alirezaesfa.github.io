@@ -8,7 +8,8 @@
 <link rel="canonical" href="https://alirezaesfa.github.io/projects/time-series.html">
 <meta property="og:type" content="website"><meta property="og:title" content="Time-series forecasting with deep learning · Alireza Esfandiari"><meta property="og:description" content="Forecasting five series by comparing KNN regression with LSTM, bidirectional LSTM, GRU, bidirectional GRU and CNN models.">
 <meta property="og:url" content="https://alirezaesfa.github.io/projects/time-series.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#07090d">
+<meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#07090d" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/site.css">
@@ -16,18 +17,18 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap nav-in">
-  <a class="brand" href="../index.html"><span class="brand-mark">AE</span>Alireza Esfandiari</a>
-  <ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a>
+  <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">AE</span>Alireza Esfandiari</a>
+  <nav aria-label="Main"><ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul></nav>
+  <div class="nav-actions"><button type="button" class="theme-btn" aria-label="Switch theme"><svg class="i-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><svg class="i-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg></button><a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a></div>
 </div></header>
 <main id="main"><div class="wrap">
-<a class="back" href="../index.html#projects">← All projects</a>
-<div class="p-head"><span class="eyebrow">MSc project · 2023</span><h1>Time-series forecasting with deep learning</h1><p class="lead">Five time series of about 1,400 observations each, and one question: which model forecasts them best on data it hasn&#x27;t seen?</p><div class="tags"><span class="tag">Python</span><span class="tag">Keras</span><span class="tag">scikit-learn</span><span class="tag">LSTM</span><span class="tag">GRU</span><span class="tag">CNN</span><span class="tag">RMSE / MAE / MAPE</span></div>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">← All projects</a></nav>
+<div class="p-head"><span class="eyebrow">MSc project · 2023</span><h1>Time-series forecasting with deep learning</h1><p class="lead">Five time series of about 1,400 observations each, and six models compared on how well they forecast data they haven&#x27;t seen.</p>
 <dl class="meta"><div><dt>Role</dt><dd>Builder</dd></div><div><dt>When</dt><dd>2023</dd></div><div><dt>Where</dt><dd>MSc, Concordia</dd></div><div><dt>Data</dt><dd>5 series</dd></div></dl></div>
-<figure class="sim"><div class="sim-bar"><span>time_series · simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
-<canvas data-sim="timeseries"  role="img" aria-label="Animated simulation: Forecasting five series by comparing KNN regression with LSTM, bidirectional LSTM, GRU, bidirectional GRU and CNN models."></canvas>
+<figure class="sim is-chart"><div class="sim-bar"><span class="sim-title">Simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
+<div class="stage"><canvas data-sim="timeseries" role="img" aria-label="Animated simulation: Forecasting five series by comparing KNN regression with LSTM, bidirectional LSTM, GRU, bidirectional GRU and CNN models."></canvas></div>
 <figcaption>The forecast (blue) follows the actual series past the train/test split. Simulated data.</figcaption></figure>
-<div class="content"><div><h2>What I did</h2><ul><li>Scaled each series and held out test data for evaluation.</li><li>Trained <strong>KNN regression, LSTM, bidirectional LSTM, GRU, bidirectional GRU and a 1D CNN</strong> in Keras for every series.</li><li>Evaluated each model on held-out data with <strong>RMSE, MAE and MAPE</strong> and compared predicted against actual values.</li></ul></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Python</span><span class="tag">Keras</span><span class="tag">scikit-learn</span><span class="tag">LSTM</span><span class="tag">GRU</span><span class="tag">CNN</span><span class="tag">RMSE / MAE / MAPE</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Time-Series-Python">Repository ↗</a></div></div></aside></div>
+<div class="content"><div class="article"><h2>What I did</h2><ul><li>Scaled each series and held out test data for evaluation.</li><li>Trained <strong>KNN regression</strong> (scikit-learn) and <strong>LSTM, bidirectional LSTM, GRU, bidirectional GRU and 1D CNN</strong> models (Keras) for every series.</li><li>Evaluated each model on held-out data with <strong>RMSE, MAE and MAPE</strong> and compared predicted against actual values.</li></ul></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Python</span><span class="tag">Keras</span><span class="tag">scikit-learn</span><span class="tag">LSTM</span><span class="tag">GRU</span><span class="tag">CNN</span><span class="tag">RMSE / MAE / MAPE</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Time-Series-Python">Repository ↗</a></div></div></aside></div>
 <nav class="pager" aria-label="More projects"><a href="fraud-detection.html"><span>← Previous</span>Fraud detection with machine learning and deep learning</a><a class="next" href="income-prediction.html"><span>Next →</span>Income prediction for customer targeting</a></nav>
 </div></main>
 <footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>
@@ -35,4 +36,5 @@
 <script src="../assets/simkit.js"></script>
 <script src="../assets/sims_work.js"></script>
 <script src="../assets/sims_more.js"></script>
+<script src="../assets/site.js"></script>
 </body></html>

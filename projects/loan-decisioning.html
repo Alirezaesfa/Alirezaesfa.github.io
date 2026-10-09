@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automated loan decisioning: a full BA package · Alireza Esfandiari</title>
+<title>Automated loan decisioning: a full BA package · Alireza Esfandiari</title>
 <meta name="description" content="Requirements, Gherkin user stories, BPMN, a UAT plan and SQL for automating personal-loan decisions at a mid-sized bank.">
 <link rel="canonical" href="https://alirezaesfa.github.io/projects/loan-decisioning.html">
-<meta property="og:type" content="website"><meta property="og:title" content="Automated loan decisioning: a full BA package · Alireza Esfandiari"><meta property="og:description" content="Requirements, Gherkin user stories, BPMN, a UAT plan and SQL for automating personal-loan decisions at a mid-sized bank.">
+<meta property="og:type" content="website"><meta property="og:title" content="Automated loan decisioning: a full BA package · Alireza Esfandiari"><meta property="og:description" content="Requirements, Gherkin user stories, BPMN, a UAT plan and SQL for automating personal-loan decisions at a mid-sized bank.">
 <meta property="og:url" content="https://alirezaesfa.github.io/projects/loan-decisioning.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#07090d">
+<meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#07090d" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/site.css">
@@ -16,23 +17,24 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap nav-in">
-  <a class="brand" href="../index.html"><span class="brand-mark">AE</span>Alireza Esfandiari</a>
-  <ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a>
+  <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">AE</span>Alireza Esfandiari</a>
+  <nav aria-label="Main"><ul><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#contact">Contact</a></li></ul></nav>
+  <div class="nav-actions"><button type="button" class="theme-btn" aria-label="Switch theme"><svg class="i-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><svg class="i-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg></button><a class="btn btn-sm" href="../Alireza_Esfandiari_Resume.pdf">Resume</a></div>
 </div></header>
 <main id="main"><div class="wrap">
-<a class="back" href="../index.html#projects">← All projects</a>
-<div class="p-head"><span class="eyebrow">Personal project · BA case study · Banking</span><h1>Automated loan decisioning: a full BA package</h1><p class="lead">A personal project, written as a case study for a mid-sized Canadian bank: personal-loan decisions in under an hour instead of days, consistent and audit-ready.</p><div class="tags"><span class="tag">Requirements</span><span class="tag">FSD</span><span class="tag">Gherkin</span><span class="tag">BPMN</span><span class="tag">UAT plan</span><span class="tag">ERD</span><span class="tag">SQL</span></div>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">← All projects</a></nav>
+<div class="p-head"><span class="eyebrow">Personal project · BA case study · Banking</span><h1>Automated loan decisioning: a full BA package</h1><p class="lead">A personal project, written as a case study for a mid-sized Canadian bank: personal-loan decisions in under an hour instead of days, consistent and audit-ready.</p>
 <dl class="meta"><div><dt>Role</dt><dd>Business analyst</dd></div><div><dt>When</dt><dd>2025</dd></div><div><dt>Where</dt><dd>Personal project</dd></div><div><dt>Type</dt><dd>Case study</dd></div></dl></div>
-<figure class="sim"><div class="sim-bar"><span>loan_decisioning · simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
-<canvas data-sim="loan"  role="img" aria-label="Animated simulation: Requirements, Gherkin user stories, BPMN, a UAT plan and SQL for automating personal-loan decisions at a mid-sized bank."></canvas>
+<figure class="sim"><div class="sim-bar"><span class="sim-title">Simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
+<div class="stage"><canvas data-sim="loan" role="img" aria-label="Animated simulation: Requirements, Gherkin user stories, BPMN, a UAT plan and SQL for automating personal-loan decisions at a mid-sized bank."></canvas></div>
 <figcaption>Rules and a risk score route each application: auto-approve, underwriter review or decline. Simulated flow.</figcaption></figure>
-<div class="content"><div><h2>What&#x27;s in it</h2><ul><li>Business and non-functional requirements, business rules and a <strong>functional specification</strong>.</li><li>User stories with <strong>Gherkin scenarios</strong>, and as-is and to-be workflows with the to-be process in <strong>BPMN</strong>.</li><li>A <strong>UAT test plan</strong>, impact analysis, ERD, state machine, sequence diagrams and wireframes.</li><li>Example BI dashboards and SQL for the loan funnel, risk and underwriting workload.</li></ul></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Requirements</span><span class="tag">FSD</span><span class="tag">Gherkin</span><span class="tag">BPMN</span><span class="tag">UAT plan</span><span class="tag">ERD</span><span class="tag">SQL</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Loan-Automation">Repository ↗</a></div></div></aside></div>
-<nav class="pager" aria-label="More projects"><a href="cloudmed.html"><span>← Previous</span>CloudMed: one cloud viewer for medical imaging</a><a class="next" href="power-bi.html"><span>Next →</span>Power BI sales and cost reports</a></nav>
+<div class="content"><div class="article"><h2>What&#x27;s in it</h2><ul><li>Business and non-functional requirements, business rules and a <strong>functional specification</strong>.</li><li>User stories with <strong>Gherkin scenarios</strong>, and as-is and to-be workflows, with the future process modeled in <strong>BPMN</strong>.</li><li>A <strong>UAT test plan</strong>, impact analysis, ERD, state machine, sequence diagrams and wireframes.</li><li>Example BI dashboards and SQL for the loan funnel, risk and underwriting workload.</li></ul></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Requirements</span><span class="tag">FSD</span><span class="tag">Gherkin</span><span class="tag">BPMN</span><span class="tag">UAT plan</span><span class="tag">ERD</span><span class="tag">SQL</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/Loan-Automation">Repository ↗</a></div></div></aside></div>
+<nav class="pager" aria-label="More projects"><a href="cloudmed.html"><span>← Previous</span>CloudMed: one cloud viewer for medical imaging</a><a class="next" href="msc-thesis.html"><span>Next →</span>Paradoxical Value Co-Creation Through Destructive Behaviors: Trash Talking in Dota 2</a></nav>
 </div></main>
 <footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>
 <span><a href="mailto:alireza1esfandiari@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/alireza-esfandiari-ae">LinkedIn</a> · <a href="https://github.com/Alirezaesfa">GitHub</a> · <a href="../Alireza_Esfandiari_Resume.pdf">Resume</a></span></div></footer>
 <script src="../assets/simkit.js"></script>
 <script src="../assets/sims_work.js"></script>
 <script src="../assets/sims_more.js"></script>
+<script src="../assets/site.js"></script>
 </body></html>
