@@ -1,9 +1,9 @@
-// Theme toggle: light by default, dark when the device prefers it, or whichever the visitor picks.
+// Theme toggle: light by default; dark only when the visitor picks it.
 (() => {
   const root = document.documentElement, btn = document.querySelector(".theme-btn");
   const mq = matchMedia("(prefers-color-scheme: dark)");
   const metas = document.querySelectorAll('meta[name="theme-color"]');
-  const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : mq.matches);
+  const isDark = () => root.dataset.theme === "dark";
   function paint() {
     if (btn) btn.setAttribute("aria-label", isDark() ? "Switch to light theme" : "Switch to dark theme");
     if (root.dataset.theme) {
