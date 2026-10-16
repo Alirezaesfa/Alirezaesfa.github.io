@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI agent with tool calling and RAG on the Claude API · Alireza Esfandiari</title>
-<meta name="description" content="A Python agent that picks its own tools, searches IBM&#x27;s annual report through a ChromaDB index and answers with the page it used.">
+<title>AI product finder with RAG on the Claude SDK · Alireza Esfandiari</title>
+<meta name="description" content="Describe a problem or need on a search-style page, and a Claude agent recommends a product or a bundle from a catalog of 628 products.">
 <link rel="canonical" href="https://alirezaesfa.github.io/projects/triage-agent.html">
-<meta property="og:type" content="website"><meta property="og:title" content="AI agent with tool calling and RAG on the Claude API · Alireza Esfandiari"><meta property="og:description" content="A Python agent that picks its own tools, searches IBM&#x27;s annual report through a ChromaDB index and answers with the page it used.">
+<meta property="og:type" content="website"><meta property="og:title" content="AI product finder with RAG on the Claude SDK · Alireza Esfandiari"><meta property="og:description" content="Describe a problem or need on a search-style page, and a Claude agent recommends a product or a bundle from a catalog of 628 products.">
 <meta property="og:url" content="https://alirezaesfa.github.io/projects/triage-agent.html"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f5f6f8">
 <script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -23,12 +23,12 @@
 </div></header>
 <main id="main"><div class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">← All projects</a></nav>
-<div class="p-head"><span class="eyebrow">Personal project · 2026</span><h1>AI agent with tool calling and RAG on the Claude API</h1><p class="lead">A learning project in Python. I built the agent loop over raw HTTP first, to see exactly what goes back and forth with the model, then moved it to the Anthropic Python SDK and gave it a search tool over IBM&#x27;s 2025 annual report. Next, it learns IBM&#x27;s product catalog so it can recommend the right product for a customer&#x27;s problem.</p>
-<dl class="meta"><div><dt>Role</dt><dd>Builder</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Where</dt><dd>Personal project</dd></div><div><dt>Status</dt><dd>In progress</dd></div></dl></div>
+<div class="p-head"><span class="eyebrow">Personal project · 2026</span><h1>AI product finder with RAG on the Claude SDK</h1><p class="lead">A personal project that runs on my laptop. A search-style web page takes what a customer needs in plain words; a Claude SDK agent with tool calling searches a product catalog through RAG and recommends a product or a bundle that fits.</p>
+<dl class="meta"><div><dt>Role</dt><dd>Builder</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Where</dt><dd>Personal project</dd></div><div><dt>Status</dt><dd>Working, runs locally</dd></div></dl></div>
 <figure class="sim"><div class="sim-bar"><span class="sim-title">Simulation</span><button type="button" class="sim-pause" aria-pressed="false">Pause</button></div>
-<div class="stage"><canvas data-sim="triage" role="img" aria-label="Animated simulation: A Python agent that picks its own tools, searches IBM&#x27;s annual report through a ChromaDB index and answers with the page it used."></canvas></div>
-<figcaption>A question goes to the agent, which calls a search tool over the annual report (RAG) and other tools as needed, then answers and cites the page. Simulated data.</figcaption></figure>
-<div class="content"><div class="article"><h2>What it does</h2><ul><li><strong>Tool calling</strong> with JSON Schema tool definitions and an agent loop that runs until the model gives a final answer, built twice: over raw HTTP and on the Anthropic SDK.</li><li><strong>Retrieval-augmented generation (RAG)</strong>: the annual report is split into overlapping chunks tagged with their page number and stored in <strong>ChromaDB</strong>, so the agent can search it and cite the page it used.</li><li>An <strong>evaluation suite</strong> that checks it picks the right tools and returns the expected priority for known inputs. It isn't in the public repository yet.</li><li>In progress: a <strong>product finder</strong> over IBM's product catalog, about 2,900 chunks with product, category and deployment details, embedded with a model that reads each chunk in full and grouped by product to rank the best matches for a customer's problem.</li></ul><h2>The core loop</h2><pre><code># keep going until Claude stops asking for tools
+<div class="stage"><canvas data-sim="triage" role="img" aria-label="Animated simulation: Describe a problem or need on a search-style page, and a Claude agent recommends a product or a bundle from a catalog of 628 products."></canvas></div>
+<figcaption>A customer's need goes to the agent, which searches the catalog (RAG) and calls tools as needed, then recommends a product or a bundle. Simulated data.</figcaption></figure>
+<div class="content"><div class="article"><h2>What it does</h2><ul><li>A <strong>search-style web page</strong>: the user types a problem or need in plain words and gets a product or a <strong>bundle of products</strong> from a catalog of <strong>628 products</strong>.</li><li>A <strong>Claude SDK</strong> agent with <strong>tool calling</strong> decides when to search, and <strong>retrieval-augmented generation (RAG)</strong> over <strong>ChromaDB</strong> finds the catalog sections that match, grouped by product.</li><li>It grew out of my first agent, which answers questions about an annual report and cites the page. I built that one over raw HTTP first, then on the SDK, and tested it with an <strong>evaluation suite</strong> (not in the public repository yet).</li></ul><h2>The core loop</h2><pre><code># keep going until Claude stops asking for tools
 while True:
     response = client.messages.create(
         model=MODEL, max_tokens=1024,
@@ -37,7 +37,7 @@ while True:
     if response.stop_reason != "tool_use":
         break
     results = [run_tool(b) for b in response.content if b.type == "tool_use"]
-    messages.append({"role": "user", "content": results})</code></pre></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Tool calling</span><span class="tag">JSON Schema</span><span class="tag">RAG</span><span class="tag">ChromaDB</span><span class="tag">Embeddings</span><span class="tag">Evals</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/triage-agent">Repository ↗</a></div></div></aside></div>
+    messages.append({"role": "user", "content": results})</code></pre></div><aside class="aside"><div class="box"><h3>Tools and skills</h3><div class="tags"><span class="tag">Python</span><span class="tag">Claude SDK</span><span class="tag">Tool calling</span><span class="tag">JSON Schema</span><span class="tag">RAG</span><span class="tag">ChromaDB</span><span class="tag">Embeddings</span><span class="tag">Evals</span></div></div><div class="box"><h3>Links</h3><div class="btns"><a class="btn btn-sm" href="https://github.com/Alirezaesfa/triage-agent">Repository ↗</a></div></div></aside></div>
 <nav class="pager" aria-label="More projects"><a href="n8n-workflow.html"><span>← Previous</span>Multi-agent workflow on n8n</a><a class="next" href="fraud-detection.html"><span>Next →</span>Fraud detection with machine learning and deep learning</a></nav>
 </div></main>
 <footer><div class="wrap"><span>© 2026 Alireza Esfandiari · Simulations use simulated data</span>

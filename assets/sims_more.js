@@ -25,14 +25,14 @@ SIMS.agents = (canvas, opt = {}) => K.flow(canvas, opt, {
   },
 });
 
-// AI agent: a question goes to Claude, which searches the annual report (RAG) and calls tools in a loop, then answers citing the page
+// product finder: a customer need goes to Claude, which searches the catalog (RAG) and calls tools, then recommends products
 SIMS.triage = (canvas, opt = {}) => K.flow(canvas, opt, {
   gap: 2.6, speed: 135, warm: 8,
   nodes: {
-    item: { at: [0, 0.72], name: "Question", short: ["Ask"], sub: "about IBM" },
+    item: { at: [0, 0.72], name: "Customer need", short: ["Need"], sub: "plain words" },
     agent: { at: [0.5, 0.72], name: "Claude", sub: "agent loop", kind: "ai" },
-    out: { at: [1, 0.72], name: "Answer", sub: "page cited", kind: "done" },
-    rag: { at: [0.25, 0.1], atV: [0.25, 0.2], name: "Report search", short: ["RAG"], sub: "ChromaDB, by page" },
+    out: { at: [1, 0.72], name: "Products", sub: "or a bundle", kind: "done" },
+    rag: { at: [0.25, 0.1], atV: [0.25, 0.2], name: "Catalog search", short: ["RAG"], sub: "628 products" },
     tool: { at: [0.75, 0.1], atV: [0.75, 0.2], name: "Tool call", short: ["Tool"], sub: "JSON Schema" },
   },
   edges: [["item", "agent"], ["agent", "out"],
