@@ -25,20 +25,19 @@ SIMS.agents = (canvas, opt = {}) => K.flow(canvas, opt, {
   },
 });
 
-// backlog triage agent: the model calls tools in a loop, then returns a priority that the evals check
+// AI agent: a question goes to Claude, which searches the annual report (RAG) and calls tools in a loop, then answers citing the page
 SIMS.triage = (canvas, opt = {}) => K.flow(canvas, opt, {
   gap: 2.6, speed: 135, warm: 8,
   nodes: {
-    item: { at: [0, 0.72], name: "Backlog item", short: ["Item"], sub: "new" },
-    agent: { at: [0.34, 0.72], name: "Claude", sub: "agent loop", kind: "ai" },
-    out: { at: [0.67, 0.72], name: "Priority", sub: "with reason" },
-    ev: { at: [1, 0.72], name: "Evals", sub: "expected?", kind: "done" },
-    rag: { at: [0.17, 0.1], atV: [0.17, 0.2], name: "Similar items", short: ["RAG"], sub: "RAG, ChromaDB" },
-    tool: { at: [0.51, 0.1], atV: [0.51, 0.2], name: "Tool call", short: ["Tool"], sub: "JSON Schema" },
+    item: { at: [0, 0.72], name: "Question", short: ["Ask"], sub: "about IBM" },
+    agent: { at: [0.5, 0.72], name: "Claude", sub: "agent loop", kind: "ai" },
+    out: { at: [1, 0.72], name: "Answer", sub: "page cited", kind: "done" },
+    rag: { at: [0.25, 0.1], atV: [0.25, 0.2], name: "Report search", short: ["RAG"], sub: "ChromaDB, by page" },
+    tool: { at: [0.75, 0.1], atV: [0.75, 0.2], name: "Tool call", short: ["Tool"], sub: "JSON Schema" },
   },
-  edges: [["item", "agent"], ["agent", "out"], ["out", "ev"],
+  edges: [["item", "agent"], ["agent", "out"],
     ["agent", "rag", { color: "accent", dash: [4, 5], alpha: 0.6, arrow: false }], ["agent", "tool", { color: "accent", dash: [4, 5], alpha: 0.6, arrow: false }]],
-  spawn: (n, api) => api.push(api.token([["item", 0], ["agent", 0.2], ["rag", 0.3], ["agent", 0.15], ["tool", 0.3], ["agent", 0.2], ["out", 0.2], ["ev", 0]], { ring: k => k.i >= 6 })),
+  spawn: (n, api) => api.push(api.token([["item", 0], ["agent", 0.2], ["rag", 0.3], ["agent", 0.15], ["tool", 0.3], ["agent", 0.2], ["out", 0]], { ring: k => k.i >= 6 })),
 });
 
 // CloudMed: imaging centers upload studies to one cloud viewer; doctors report; patients see every report in one place
