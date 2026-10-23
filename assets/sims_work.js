@@ -109,7 +109,8 @@ SIMS.contracts = (canvas, opt = {}) => {
   });
 };
 
-// billing adjustments: current state (manual lookups) vs future state (automatic data pull and an AI recommendation)
+// billing adjustments: current state (the validator looks everything up by hand) vs future state
+// (a sales chatbot pulls the data and writes the request, then the AI recommends and the validator decides)
 SIMS.billing = (canvas, opt = {}) => {
   const $ = id => (opt.thumb ? null : document.getElementById(id));
   const ui = { cur: $("ba-cur"), fut: $("ba-fut"), look: $("ba-look"), rec: $("ba-rec"), capF: $("ba-cap-fut"), capC: $("ba-cap-cur") };
@@ -149,14 +150,14 @@ SIMS.billing = (canvas, opt = {}) => {
     speed: 125, warm: 4.5, jitter: 5,
     state: () => ({ mode: "future", picked: false, autoT: 0, spawnT: 1.25 }),
     nodes: {
-      c0: { at: [0, 0.72], name: "Request", sub: "new request" },
-      c1: { at: [0.25, 0.72], name: "Data pull", short: ["Data"], sub: "automatic" },
+      c0: { at: [0, 0.72], name: "Sales request", short: ["Request", "Sales"], sub: "new request" },
+      c1: { at: [0.25, 0.72], name: "Sales chatbot", short: ["Chatbot", "Bot"], sub: "pulls the data" },
       c2: { at: [0.5, 0.72], name: "AI recommendation", short: ["AI advice", "AI"], sub: "with reasons", kind: "ai" },
       c3: { at: [0.75, 0.72], name: "Validator", short: ["Review"], sub: "human decides" },
-      c4: { at: [1, 0.72], name: "Decision", short: ["Done"], sub: "closed", kind: "done" },
+      c4: { at: [1, 0.72], name: "Decision", short: ["Done"], sub: "approve or reject", kind: "done" },
       s0: { at: [0.2, 0.1], atV: [0.25, 0.14], name: "Billing data", short: ["Billing"], kind: "src" },
       s1: { at: [0.5, 0.1], atV: [0.5, 0.14], name: "Contracts", kind: "src" },
-      s2: { at: [0.8, 0.1], atV: [0.75, 0.14], name: "Privacy docs", short: ["Privacy"], kind: "src" },
+      s2: { at: [0.8, 0.1], atV: [0.75, 0.14], name: "Policies", kind: "src" },
     },
     edges: [
       ["c0", "c1"], ["c1", "c2"], ["c2", "c3"], ["c3", "c4"],
