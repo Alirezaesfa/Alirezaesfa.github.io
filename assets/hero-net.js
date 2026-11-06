@@ -1,7 +1,8 @@
-// Home page hero: three faint orbits around the portrait, each with evenly spaced nodes. The orbits turn slowly
-// in alternating directions; spokes between neighbouring orbits fade in as nodes line up and out as they pass,
-// and small signals travel along the orbits and step outward. Decorative only (aria-hidden). It fades out on the
-// headline side so the text stays clean. Still for reduced motion; paused off screen or in a hidden tab.
+// Home page hero: three faint orbits around the portrait, each with evenly spaced dots, turning slowly in
+// alternating directions. Every few seconds a pulse leaves the portrait: a soft ring travels outward, short lines
+// carry it from one orbit to the next, and each orbit's dots light up as it arrives, inner to outer; then everything
+// settles until the next beat. Decorative only (aria-hidden). It fades out on the headline side so the text stays
+// clean. Still for reduced motion; paused off screen or in a hidden tab.
 (() => {
   const hero = document.querySelector(".hero"), portrait = hero && hero.querySelector(".portrait");
   if (!hero || !portrait) return;
@@ -13,22 +14,24 @@
   const root = document.documentElement;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TAU = Math.PI * 2;
-  let W = 0, H = 0, cx = 0, cy = 0, R = 0, narrow = false, rings = [], signals = [];
-  let color = "#1a63d6", dark = false, time = 0, sigT = 0, pulseT = 0;
-  let seed = 5;   // seeded random so every load looks the same
-  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const BEAT = 5.5, FIRST = 0.8, EASE = 1.6;   // seconds between pulses, delay before the first one, how fast it slows
+  let W = 0, H = 0, cx = 0, cy = 0, R = 0, narrow = false, rings = [];
+  let color = "#1a63d6", dark = false, time = 0;
+  const pulse = { r0: 0, r1: 0, dur: 2.6, out: 34, dash: 14 };
   const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-  const wrapPi = a => { a = (a + Math.PI) % TAU; if (a < 0) a += TAU; return a - Math.PI; };
 
-  // how visible a point at angle th is: wide screens fade the side facing the headline (left) and the very bottom;
-  // phones, where the portrait sits above the headline, fade the lower half
+  // how visible a point at angle th is: wide screens fade the side facing the headline (left) and the very bottom,
+  // above the facts; phones, where the portrait sits above the headline, fade the lower half
   const vis = th => {
     const c = Math.cos(th), s = Math.sin(th);
-    return narrow ? smooth(0.45, -0.1, s) * smooth(-0.7, -0.15, c) : smooth(-0.62, -0.15, c) * smooth(0.97, 0.72, s);   // and the very bottom, above the facts
+    return narrow ? smooth(0.45, -0.1, s) * smooth(-0.7, -0.15, c) : smooth(-0.62, -0.15, c) * smooth(0.97, 0.72, s);
   };
   // ...and the top edge of the hero, so the outer orbit never runs hard into the header
   const V = (th, r) => vis(th) * smooth(0, 40, cy + r * Math.sin(th));
-  const nodeAngle = (g, i) => g.off + g.w * time + (i * TAU) / g.n;
+  const dotAngle = (g, i) => g.off + g.w * time + (i * TAU) / g.n;
+  // the pulse front: fast as it leaves the portrait, slowing as it reaches the outer orbit
+  const frontAt = t => pulse.r0 + (pulse.r1 - pulse.r0) * (1 - Math.pow(1 - Math.min(1, t / pulse.dur), EASE));
+  const hitTime = r => pulse.dur * (1 - Math.pow(1 - (r - pulse.r0) / (pulse.r1 - pulse.r0), 1 / EASE));
 
   function readColor() {
     color = getComputedStyle(root).getPropertyValue("--accent").trim() || color;
@@ -44,31 +47,14 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const radii = narrow ? [R + 20, R + 46, R + 76] : [R + 28, R + 72, R + 120];
     const speeds = narrow ? [0.05, -0.036, 0.026] : [0.034, -0.024, 0.017];   // radians a second, alternating
-    const gap = narrow ? 30 : 56;                                            // node spacing along an orbit, px
+    const gap = narrow ? 30 : 56;                                            // dot spacing along an orbit, px
     rings = radii.map((r, k) => ({ r, w: speeds[k], off: k * 0.41, n: Math.max(8, Math.round((TAU * r) / gap)), fade: [1, 0.82, 0.64][k] }));
+    pulse.r0 = R + (narrow ? 5 : 8); pulse.out = narrow ? 20 : 34; pulse.dash = narrow ? 9 : 14;
+    pulse.r1 = radii[2] + pulse.out + 6; pulse.dur = narrow ? 2.2 : 2.6;
+    rings.forEach(g => { g.hit = hitTime(g.r); });
     const s = canvas.style;   // the CSS mask softens the outer edge, centred on the portrait
     s.setProperty("--nx", cx + "px"); s.setProperty("--ny", cy + "px"); s.setProperty("--nr", radii[2] + (narrow ? 34 : 60) + "px");
-    seed = 5; signals = [];
     return true;
-  }
-  function spawnSignal() {
-    for (let tries = 0; tries < 12; tries++) {
-      const k = Math.floor(rnd() * rings.length), th = rnd() * TAU;
-      if (V(th, rings[k].r) < 0.7 || (k < rings.length - 1 && V(th, rings[k + 1].r) < 0.7)) continue;
-      if (k < rings.length - 1 && rnd() < 0.3) {   // step outward to the next orbit
-        signals.push({ hop: true, k, th, t: 0, dur: 1.1 });
-      } else {                                      // travel a short way along the orbit
-        const d = (0.35 + rnd() * 0.4) * (rnd() < 0.5 ? -1 : 1);
-        signals.push({ hop: false, k, th, d, t: 0, dur: 2 + Math.abs(d) * 2.4 });
-      }
-      return;
-    }
-  }
-  function step(dt) {
-    time += dt; sigT += dt; pulseT += dt;
-    if (sigT > 1.15 && signals.length < 4) { sigT = 0; spawnSignal(); }
-    for (const s of signals) s.t += dt / s.dur;
-    signals = signals.filter(s => s.t < 1);
   }
   function arcs(r, alpha) {   // a full circle drawn in short pieces so each piece can fade by angle
     const pieces = 144;
@@ -81,47 +67,48 @@
   function draw() {
     ctx.clearRect(0, 0, W, H);
     ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1;
-    const ringA = dark ? 0.2 : 0.16, spokeA = dark ? 0.34 : 0.27, dotA = dark ? 0.8 : 0.62;
-    // a soft pulse leaving the portrait every 7 seconds
-    if (!reduce) {
-      const p = (pulseT % 7) / 3.6;
-      if (p < 1) arcs(R + 8 + p * (rings[2].r - R + 10), (dark ? 0.22 : 0.16) * (1 - p) * (1 - p));
-    }
-    for (const g of rings) arcs(g.r, ringA * g.fade);
-    // spokes: a straight line out from a node to the next orbit, lit while a node there passes its end, so every
-    // spoke points away from the portrait like the spokes of a wheel
-    for (let k = 0; k < rings.length - 1; k++) {
-      const A = rings[k], B = rings[k + 1], stepB = TAU / B.n, thr = stepB * 0.24;
-      for (let i = 0; i < A.n; i++) {
-        const ta = nodeAngle(A, i);
-        let j = Math.round(wrapPi(ta - nodeAngle(B, 0)) / stepB); j = ((j % B.n) + B.n) % B.n;
-        const tb = nodeAngle(B, j), d = Math.abs(wrapPi(ta - tb));
-        if (d > thr) continue;
-        const v = Math.min(V(ta, A.r), V(ta, B.r)) * smooth(thr, thr * 0.15, d) * Math.min(A.fade, B.fade);
-        if (v < 0.02) continue;
-        ctx.globalAlpha = spokeA * v; ctx.beginPath();
-        const ux = Math.cos(ta), uy = Math.sin(ta);
-        ctx.moveTo(cx + A.r * ux, cy + A.r * uy); ctx.lineTo(cx + B.r * ux, cy + B.r * uy); ctx.stroke();
+    const ringA = dark ? 0.2 : 0.16, dotA = dark ? 0.72 : 0.52, lineA = dark ? 0.55 : 0.42, headA = dark ? 0.95 : 0.8;
+    const since = time - FIRST, t = since < 0 ? -1 : since % BEAT;   // seconds into the current beat
+    const moving = t >= 0 && t <= pulse.dur, f = moving ? frontAt(t) : 0;
+    // how lit each orbit is: a quick rise as the pulse arrives, then a slow fade
+    const lit = rings.map(g => { const a = t - g.hit; return t < 0 || a < 0 ? 0 : smooth(0, 0.12, a) * (1 - smooth(0.15, 1.5, a)); });
+
+    if (moving) arcs(f, (dark ? 0.16 : 0.12) * Math.pow(1 - t / pulse.dur, 1.4));   // the soft ring of the pulse
+    rings.forEach((g, k) => arcs(g.r, ringA * g.fade * (1 + 0.8 * lit[k])));
+
+    // short lines riding the pulse: portrait to the first orbit, orbit to orbit (each one lands on a dot), and out
+    // past the last orbit from its dots, fading as they go
+    if (moving) {
+      for (let s = 0; s < 4; s++) {
+        const from = s === 0 ? pulse.r0 : rings[s - 1].r, to = s < 3 ? rings[s].r : rings[2].r + pulse.out;
+        if (f <= from) continue;
+        const head = Math.min(f, to), tail = Math.min(Math.max(from, f - pulse.dash), to);
+        if (head - tail < 0.5) continue;
+        const g = rings[Math.min(s, 2)];
+        let a = smooth(from, from + 6, f) * g.fade;
+        if (s === 3) a *= 1 - smooth(from, to, f);
+        for (let i = 0; i < g.n; i++) {
+          const th = dotAngle(g, i), v = V(th, head) * a;
+          if (v < 0.02) continue;
+          const ux = Math.cos(th), uy = Math.sin(th);
+          ctx.globalAlpha = lineA * v; ctx.beginPath(); ctx.moveTo(cx + tail * ux, cy + tail * uy); ctx.lineTo(cx + head * ux, cy + head * uy); ctx.stroke();
+          if (f < to) { ctx.globalAlpha = headA * v; ctx.beginPath(); ctx.arc(cx + head * ux, cy + head * uy, narrow ? 1.2 : 1.5, 0, TAU); ctx.fill(); }
+        }
       }
     }
-    // nodes: evenly spaced, every fourth one on the middle orbit a little larger
+
+    // dots: evenly spaced (every fourth one on the middle orbit a little larger); they light up as the pulse arrives
     rings.forEach((g, k) => {
+      const b = lit[k];
       for (let i = 0; i < g.n; i++) {
-        const th = nodeAngle(g, i), v = V(th, g.r);
+        const th = dotAngle(g, i), v = V(th, g.r) * g.fade;
         if (v < 0.02) continue;
-        const r = (k === 1 && i % 4 === 0 ? 2.5 : [1.9, 1.7, 1.5][k]) * (narrow ? 0.85 : 1);
-        ctx.globalAlpha = dotA * v * g.fade; ctx.beginPath(); ctx.arc(cx + g.r * Math.cos(th), cy + g.r * Math.sin(th), r, 0, TAU); ctx.fill();
+        const r = (k === 1 && i % 4 === 0 ? 2.5 : [1.9, 1.7, 1.5][k]) * (narrow ? 0.85 : 1) * (1 + 0.6 * b);
+        const x = cx + g.r * Math.cos(th), y = cy + g.r * Math.sin(th);
+        if (b > 0.02) { ctx.globalAlpha = (dark ? 0.26 : 0.18) * b * v; ctx.beginPath(); ctx.arc(x, y, r * 3, 0, TAU); ctx.fill(); }
+        ctx.globalAlpha = Math.min(1, dotA * (1 + 0.7 * b)) * v; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
       }
     });
-    // signals: a bright dot with a soft halo, easing in and out
-    for (const s of signals) {
-      const e = s.t * s.t * (3 - 2 * s.t), f = Math.sin(Math.PI * s.t);
-      let th = s.th, r = rings[s.k].r;
-      if (s.hop) r += (rings[s.k + 1].r - r) * e; else th = s.th + s.d * e;
-      const x = cx + r * Math.cos(th), y = cy + r * Math.sin(th), v = V(th, r) * f;
-      ctx.globalAlpha = (dark ? 0.95 : 0.85) * v; ctx.beginPath(); ctx.arc(x, y, narrow ? 2 : 2.4, 0, TAU); ctx.fill();
-      ctx.globalAlpha = (dark ? 0.28 : 0.2) * v; ctx.beginPath(); ctx.arc(x, y, narrow ? 5 : 6.5, 0, TAU); ctx.fill();
-    }
     ctx.globalAlpha = 1;
   }
 
@@ -134,14 +121,14 @@
   if ("ResizeObserver" in window) new ResizeObserver(later).observe(hero); else addEventListener("resize", later);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
   addEventListener("load", later);   // the portrait image can shift the layout once it loads
-  if (reduce) return;   // reduced motion: the orbits stay still
+  if (reduce) return;   // reduced motion: the orbits stay still and no pulses run
 
   let visible = true, last = 0;
   if ("IntersectionObserver" in window) new IntersectionObserver(e => { visible = e[e.length - 1].isIntersecting; }).observe(hero);
   const frame = ts => {
     const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0;
     last = ts;
-    if (visible && !document.hidden && W) { step(dt); draw(); }
+    if (visible && !document.hidden && W) { time += dt; draw(); }
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
