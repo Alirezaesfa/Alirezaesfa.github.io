@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alireza Esfandiari · Business analyst for AI and automation</title>
-<meta name="description" content="Business analyst for process intelligence and AI at TELUS. Projects with live simulations: process mining, AI contract review, agents, machine learning and research.">
+<meta name="description" content="Business analyst for process intelligence and AI at TELUS. Projects with live simulations: process mining, AI contract review, AI agents on IBM watsonx and the Claude SDK, machine learning and research.">
 <link rel="canonical" href="https://alirezaesfa.github.io/">
-<meta property="og:type" content="website"><meta property="og:title" content="Alireza Esfandiari · Business analyst for AI and automation"><meta property="og:description" content="Business analyst for process intelligence and AI at TELUS. Projects with live simulations: process mining, AI contract review, agents, machine learning and research.">
+<meta property="og:type" content="website"><meta property="og:title" content="Alireza Esfandiari · Business analyst for AI and automation"><meta property="og:description" content="Business analyst for process intelligence and AI at TELUS. Projects with live simulations: process mining, AI contract review, AI agents on IBM watsonx and the Claude SDK, machine learning and research.">
 <meta property="og:url" content="https://alirezaesfa.github.io/"><meta property="og:image" content="https://alirezaesfa.github.io/og.png"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f5f6f8">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -26,19 +26,19 @@
 <section class="hero"><div class="wrap hero-grid"><div>
   <span class="status">Open to BA, AI product and TPM roles</span>
   <h1>Alireza Esfandiari<br>builds with <em class="nowrap">AI and data.</em></h1>
-  <p class="lead">Business analyst for process intelligence in the B2B AI organization at TELUS. I take AI and automation projects from the first conversation to the day people actually use them: requirements, process maps and testing on the business side; SQL, Python and LLM APIs on the technical side.</p>
+  <p class="lead">Business analyst for process intelligence in the B2B AI organization at TELUS. I take AI and automation projects from the first conversation to the day people actually use them: requirements, process maps and testing on the business side; SQL, Python and AI agents on the technical side.</p>
   <div class="btns"><a class="btn btn-primary" href="#projects">See projects</a><a class="btn" href="mailto:alireza1esfandiari@gmail.com">Email me</a><a class="btn" href="Alireza_Esfandiari_Resume.pdf">Resume</a></div>
   <div class="textlinks"><span>Based in Ontario, Canada</span><a href="https://www.linkedin.com/in/alireza-esfandiari-ae">LinkedIn ↗</a><a href="https://github.com/Alirezaesfa">GitHub ↗</a></div>
   </div>
   <figure class="portrait"><img src="assets/alireza.webp" width="720" height="720" alt="Alireza Esfandiari" fetchpriority="high"></figure>
 </div>
 <div class="wrap">
-  <div class="facts"><div class="fact"><b>4+ years</b><span>in business analysis and BI</span></div><div class="fact"><b>$2.5M</b><span>program benefit our team delivered, including $408K I identified</span></div><div class="fact"><b>30,000 hours</b><span>of manual data pulls my Python scripts replaced, by our estimate</span></div><div class="fact"><b>MBA + MSc</b><span>plus a BSc in Engineering</span></div></div>
+  <div class="facts"><a class="fact" href="#about"><b>4+ years</b><span>in business analysis and BI</span></a><a class="fact" href="projects/contract-migration.html"><b>$2.5M</b><span>program benefit our team delivered, including $408K I identified</span></a><a class="fact" href="projects/contract-migration.html"><b>30,000 hours</b><span>of manual data pulls my Python scripts replaced, by our estimate</span></a><a class="fact" href="#about"><b>MBA + MSc</b><span>plus a BSc in Engineering</span></a></div>
 </div></section>
 
 <section id="projects"><div class="wrap">
   <div class="sec-head"><span class="eyebrow">Projects</span><h2>Selected work</h2><p>Each project runs a small live diagram of how it works, using simulated data. Open any project for the full story.</p>
-  <nav class="jump" aria-label="Project groups"><a href="#telus">Work at TELUS<span>4</span></a><a href="#ai-data">AI and data projects<span>6</span></a><a href="#product">Product and research<span>3</span></a></nav></div>
+  <nav class="jump" aria-label="Project groups"><a href="#telus">Work at TELUS<span>4</span></a><a href="#ai-agents">AI agents<span>2</span></a><a href="#ml-data">Machine learning and data<span>5</span></a><a href="#product">Product and research<span>3</span></a></nav></div>
 <div class="group" id="telus">
   <div class="group-head"><h3>Work at TELUS</h3><p>Process intelligence and AI delivery in the B2B AI organization. Details are generalized.</p></div>
   <div class="grid featured"><article class="pcard">
@@ -79,18 +79,31 @@
   </div>
 </article></div>
 </div>
-<div class="group" id="ai-data">
-  <div class="group-head"><h3>AI and data projects</h3><p>An AI agent, machine learning, forecasting, statistics and reporting, from personal and MSc work.</p></div>
-  <div class="grid"><article class="pcard">
-  <div class="stage"><canvas data-sim="triage" data-thumb aria-hidden="true"></canvas></div>
+<div class="group" id="ai-agents">
+  <div class="group-head"><h3>AI agents</h3><p>Two working agents I built myself: one on IBM watsonx, one on the Claude SDK.</p></div>
+  <div class="grid featured"><article class="pcard">
+  <div class="stage"><canvas data-sim="watsonx" data-thumb aria-hidden="true"></canvas></div>
   <div class="body">
-    <span class="kicker">Personal project · 2026</span>
-    <h3><a href="projects/triage-agent.html">AI product finder with RAG on the Claude SDK</a></h3>
-    <p class="result"><b>628</b> products searched to recommend a product or a bundle</p>
-    <div class="tags"><span class="tag">Python</span><span class="tag">Claude SDK</span><span class="tag">Tool calling</span><span class="tag">JSON Schema</span></div>
+    <span class="kicker">Personal project · IBM watsonx · 2026</span>
+    <h3><a href="projects/ibm-watsonx-agents.html">Agentic AI for billing adjustments on IBM watsonx</a></h3>
+    <p class="result"><b>12 of 12</b> test requests matched the answer key, and people make every decision</p>
+    <div class="tags"><span class="tag">watsonx Orchestrate</span><span class="tag">AI agents</span><span class="tag">Tool calling</span><span class="tag">RAG</span><span class="tag">Python</span><span class="tag">SQL</span></div>
     <span class="more" aria-hidden="true">View details <span class="arr">→</span></span>
   </div>
 </article><article class="pcard">
+  <div class="stage"><canvas data-sim="triage" data-thumb aria-hidden="true"></canvas></div>
+  <div class="body">
+    <span class="kicker">Personal project · Claude SDK · 2026</span>
+    <h3><a href="projects/triage-agent.html">AI product finder with RAG on the Claude SDK</a></h3>
+    <p class="result"><b>11 → 13</b> of 14 correct picks after a better search prompt</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Claude SDK</span><span class="tag">RAG</span><span class="tag">ChromaDB</span><span class="tag">Evals</span></div>
+    <span class="more" aria-hidden="true">View details <span class="arr">→</span></span>
+  </div>
+</article></div>
+</div>
+<div class="group" id="ml-data">
+  <div class="group-head"><h3>Machine learning and data</h3><p>Machine learning, forecasting, statistics and reporting, from personal and MSc work.</p></div>
+  <div class="grid five"><article class="pcard">
   <div class="stage"><canvas data-sim="fraud" data-thumb aria-hidden="true"></canvas></div>
   <div class="body">
     <span class="kicker">Personal project · 2024</span>
@@ -173,7 +186,7 @@
 <section id="about"><div class="wrap about">
   <div class="prose"><span class="eyebrow">About</span><h2>From engineering to AI delivery</h2>
   <p>I started out in engineering, then moved into business with an <strong>MBA</strong> and a first job as a <strong>junior business analyst at a bank</strong>, writing SQL and building Power BI dashboards. I co-founded a <strong>health-tech startup</strong>, raised two funding rounds and led its pivot to an app for doctors that went on to reach 10,000+ users. Then I worked as a <strong>business analyst</strong> at a retail company, gathering requirements for a new inventory system and helping prioritize features that lifted sales 15% and cut stockouts 20%.</p>
-  <p>In 2022 I started an <strong>MSc at Concordia</strong> in Montreal, with data mining and machine learning courses and a qualitative thesis. In January 2026 I joined <strong>TELUS</strong> as a business analyst in process intelligence, working on AI and automation from requirements to adoption.</p>
+  <p>In 2022 I started an <strong>MSc at Concordia</strong> in Montreal, with data mining and machine learning courses and a qualitative thesis. In January 2026 I joined <strong>TELUS</strong> as a business analyst in process intelligence, working on AI and automation from requirements to adoption. On my own time I build AI agents, most recently a <a href="projects/ibm-watsonx-agents.html">working proof of concept on IBM watsonx</a>.</p>
   <div class="creds"><div class="cred"><span class="k">Certified</span><span><a href="https://www.credly.com/badges/92158ad8-3ad2-4a24-9fa0-5ad59636aa13/linked_in_profile" target="_blank" rel="noopener">SAFe POPM ↗</a> &nbsp;·&nbsp; <a href="https://app.badgecert.com/public/badges/tdmninzq" target="_blank" rel="noopener">CSPO ↗</a></span></div>
   <div class="cred"><span class="k">Languages</span><span>English and Persian (fluent), French (intermediate to advanced)</span></div></div>
   <p class="note">Work details are generalized, and the simulations use simulated data.</p></div>
@@ -182,7 +195,7 @@
 </div></section>
 
 <section id="skills"><div class="wrap"><div class="sec-head"><span class="eyebrow">Toolkit</span><h2>Skills</h2><p>The methods and tools I work with.</p></div>
-<div class="skills"><div class="skill"><h3>Business analysis</h3><div class="tags"><span class="tag">Requirements and BRDs</span><span class="tag">User stories</span><span class="tag">Acceptance criteria</span><span class="tag">Process discovery</span><span class="tag">Process mapping</span><span class="tag">BPMN</span><span class="tag">Process design docs</span><span class="tag">UAT</span><span class="tag">Process mining</span></div></div><div class="skill"><h3>Data</h3><div class="tags"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">BigQuery</span><span class="tag">Oracle</span><span class="tag">ETL</span><span class="tag">Salesforce data</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel</span></div></div><div class="skill"><h3>AI and ML</h3><div class="tags"><span class="tag">Claude SDK and API</span><span class="tag">AI agents</span><span class="tag">Tool calling</span><span class="tag">RAG</span><span class="tag">ChromaDB</span><span class="tag">Evals</span><span class="tag">AI output validation</span><span class="tag">n8n</span><span class="tag">scikit-learn</span><span class="tag">TensorFlow/Keras</span></div></div><div class="skill"><h3>Delivery</h3><div class="tags"><span class="tag">Agile and SAFe</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">monday.com</span><span class="tag">GitHub</span><span class="tag">Visio</span></div></div></div></div></section>
+<div class="skills"><div class="skill"><h3>Business analysis</h3><div class="tags"><span class="tag">Requirements and BRDs</span><span class="tag">User stories</span><span class="tag">Acceptance criteria</span><span class="tag">Process discovery</span><span class="tag">Process mapping</span><span class="tag">BPMN</span><span class="tag">Process design docs</span><span class="tag">UAT</span><span class="tag">Process mining</span></div></div><div class="skill"><h3>Data</h3><div class="tags"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">BigQuery</span><span class="tag">Oracle</span><span class="tag">watsonx.data</span><span class="tag">ETL</span><span class="tag">Salesforce data</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel</span></div></div><div class="skill"><h3>AI agents and LLMs</h3><div class="tags"><span class="tag">IBM watsonx Orchestrate</span><span class="tag">Claude SDK and API</span><span class="tag">AI agents</span><span class="tag">Tool calling</span><span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">ChromaDB</span><span class="tag">Evals</span><span class="tag">AI output validation</span><span class="tag">n8n</span></div></div><div class="skill"><h3>Machine learning</h3><div class="tags"><span class="tag">scikit-learn</span><span class="tag">TensorFlow/Keras</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Classification</span><span class="tag">Forecasting</span><span class="tag">Regression</span><span class="tag">Model evaluation</span></div></div><div class="skill"><h3>Delivery</h3><div class="tags"><span class="tag">Agile and SAFe</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">monday.com</span><span class="tag">GitHub</span><span class="tag">pytest</span><span class="tag">Visio</span></div></div></div></div></section>
 
 <section id="contact"><div class="wrap"><div class="contact">
   <div><h2>Hiring for AI, data or product work?</h2><p>I'm open to business analyst, AI product and technical project manager roles in Toronto, Montreal or remote. Email is the fastest way to reach me.</p></div>

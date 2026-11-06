@@ -40,6 +40,51 @@ SIMS.triage = (canvas, opt = {}) => K.flow(canvas, opt, {
   spawn: (n, api) => api.push(api.token([["item", 0], ["agent", 0.2], ["rag", 0.3], ["agent", 0.15], ["tool", 0.3], ["agent", 0.2], ["out", 0]], { ring: k => k.i >= 6 })),
 });
 
+// IBM watsonx proof of concept: an intake agent helps sales file a complete request, a review agent recommends an
+// outcome using Python tools over watsonx.data and the policies (RAG), a person decides, credits over $20K also go
+// to a director, and every decision is logged with any override reason
+SIMS.watsonx = (canvas, opt = {}) => {
+  const $ = id => (opt.thumb ? null : document.getElementById(id));
+  const el = { req: $("wx-req"), dir: $("wx-dir"), ovr: $("wx-ovr") };
+  const part = (api, from, to, s) => api.push(api.token([[from, 0], [to, 0]], { part: true, off: 0, r: 2.2, speed: s || 2.3 }));
+  return K.flow(canvas, opt, {
+    gap: 1.45, speed: 128, warm: 9, jitter: 5,
+    state: () => ({ req: 0, dir: 0, ovr: 0 }),
+    nodes: {
+      sales: { at: [0, 0.6], name: "Sales request", short: ["Request", "Sales"], sub: "account manager" },
+      intake: { at: [0.25, 0.6], name: "Intake agent", short: ["Intake"], sub: "completes it", kind: "ai" },
+      review: { at: [0.5, 0.6], name: "Review agent", short: ["Review AI", "Review"], sub: "recommends", kind: "ai" },
+      person: { at: [0.75, 0.6], name: "Reviewer", short: ["Person"], sub: "makes the call" },
+      log: { at: [1, 0.6], name: "Decision log", short: ["Logged", "Log"], sub: "audit trail", kind: "done" },
+      data: { at: [0.12, 0.06], atV: [0.12, 0.16], name: "watsonx.data", short: ["Data"], sub: "Presto, Iceberg", kind: "src" },
+      tools: { at: [0.375, 0.06], atV: [0.375, 0.16], name: "18 Python tools", short: ["Python tools", "Tools"], sub: "SQL and math", kind: "hub" },
+      kb: { at: [0.63, 0.06], atV: [0.63, 0.16], name: "Policies", short: ["Policy"], sub: "RAG search", kind: "src" },
+      dir: { at: [0.875, 0.98], atV: [0.875, 0.22], name: "Director", sub: "over $20K" },
+    },
+    edges: [
+      ["sales", "intake"], ["intake", "review"], ["review", "person"], ["person", "log"],
+      ["person", "dir", { dash: [4, 5], alpha: 0.8 }], ["dir", "log", { dash: [4, 5], alpha: 0.8 }],
+      ["data", "tools", { color: "accent", alpha: 0.45, arrow: false }],
+      ["tools", "intake", { color: "accent", dash: [4, 5], alpha: 0.55, arrow: false }],
+      ["tools", "review", { color: "accent", dash: [4, 5], alpha: 0.55, arrow: false }],
+      ["kb", "intake", { color: "accent", dash: [4, 5], alpha: 0.4, arrow: false }],
+      ["kb", "review", { color: "accent", dash: [4, 5], alpha: 0.55, arrow: false }],
+    ],
+    spawn: (n, api) => {
+      const big = n % 3 === 1, override = n % 4 === 2;   // illustrative mix, not measured rates
+      const stops = [["sales", 0], ["intake", 0.55], ["review", 0.55], ["person", 0.6]].concat(big ? [["dir", 0.45]] : [], [["log", 0]]);
+      api.push(api.token(stops, { big, override, color: k => (k.override && k.i >= 3 ? "signal" : "accent"), ring: k => k.i >= 2 }));
+    },
+    arrive: (tok, id, api) => {
+      if (tok.part) return;
+      if (id === "intake" || id === "review") { part(api, "tools", id); part(api, "kb", id); part(api, "data", "tools", 2.6); }
+      if (id === "log") { const st = api.st; st.req++; if (tok.big) st.dir++; if (tok.override) st.ovr++; }
+    },
+    warmed: api => { Object.assign(api.st, { req: 48, dir: 16, ovr: 12 }); },
+    stats: st => { K.set(el.req, st.req); K.set(el.dir, st.dir); K.set(el.ovr, st.ovr); },
+  });
+};
+
 // CloudMed: imaging centers upload studies to one cloud viewer; doctors report; patients see every report in one place
 SIMS.cloudmed = (canvas, opt = {}) => K.flow(canvas, opt, {
   gap: 0.9, speed: 118, warm: 6,
