@@ -65,7 +65,7 @@
 // and the classes come off once the fade ends so hover effects work as before.
 (() => {
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const targets = [...document.querySelectorAll(".fact, .group-head, .pcard, .sec-head, .about > *, .skills, .contact, .content, .cta-strip, .pager")]
+  const targets = [...document.querySelectorAll(".fact, .group-head, .pcard, .sec-head, .about > *, .exp > *, .more-work > summary, .skills, .contact, .content, .cta-strip, .pager")]
     .filter(el => el.getBoundingClientRect().top > innerHeight * 0.92);
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => {
@@ -84,4 +84,18 @@
     el.classList.add("reveal");
     io.observe(el);
   });
+})();
+
+// Home page: the "More work" projects sit in a closed <details>; open it when a link or the address points into it.
+(() => {
+  const box = document.getElementById("more-work");
+  if (!box) return;
+  const check = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if (el && (el === box || box.contains(el)) && !box.open) { box.open = true; el.scrollIntoView(); }
+  };
+  addEventListener("hashchange", check);
+  document.querySelectorAll('a[href="#more-work"]').forEach(a => a.addEventListener("click", () => { box.open = true; }));
+  check();
 })();

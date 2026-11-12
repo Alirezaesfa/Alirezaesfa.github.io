@@ -301,3 +301,41 @@ footer a { color: var(--muted); }
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* experience: work and education side by side, right after the hero facts */
+.exp { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; }
+@media (max-width: 860px) { .exp { grid-template-columns: minmax(0, 1fr); gap: 30px; } }
+.exp-h { margin: 0; font: 500 .75rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+.exp .timeline { margin-top: 16px; }
+
+/* about: prose on the left, credentials on the right */
+@media (min-width: 861px) { .about-side { padding-top: 34px; } }
+.about-side .creds { margin-top: 0; }
+
+/* the eight projects beyond the featured six sit behind this toggle */
+.more-work { margin-top: 52px; }
+.more-work > summary { list-style: none; cursor: pointer; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius); box-shadow: var(--shadow); transition: border-color .2s; }
+.more-work > summary::-webkit-details-marker { display: none; }
+.more-work > summary:hover { border-color: var(--accent-edge); }
+.more-work > summary::after { content: ""; width: 8px; height: 8px; margin: 0 4px 3px 2px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); transition: transform .2s; }
+.more-work[open] > summary::after { transform: rotate(-135deg); margin-bottom: -3px; }
+.more-work[open] > summary { margin-bottom: 36px; }
+.mw-label { font-weight: 650; font-size: 1.05rem; letter-spacing: -.01em; color: var(--ink); }
+.mw-sub { color: var(--muted); font-size: .9rem; }
+.mw-count { margin-left: auto; font: 500 .75rem/1 var(--font-mono); color: var(--tag-ink); background: var(--accent-soft); border: 1px solid var(--accent-edge); padding: 6px 9px; border-radius: 999px; }
+@media (max-width: 480px) { .mw-sub { flex-basis: 100%; order: 3; } }
+
+/* phones: headline, buttons and the first facts fit on the first screen; the portrait sits small beside the name */
+@media (max-width: 640px) {
+  .hero { padding: 22px 0 28px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) auto; column-gap: 14px; row-gap: 0; align-items: center; }
+  .hero-grid > div:first-child { display: contents; }
+  .hero .status { grid-column: 1 / -1; justify-self: start; }
+  .hero h1 { grid-column: 1; grid-row: 2; font-size: clamp(2rem, 9vw, 2.35rem); margin-top: 16px; }
+  .portrait { grid-column: 2; grid-row: 2; order: 0; width: 84px; margin-top: 16px; }
+  .hero .lead { grid-column: 1 / -1; font-size: 1rem; line-height: 1.55; margin: 14px 0 18px; }
+  .hero .btns, .hero .textlinks { grid-column: 1 / -1; }
+  .hero .textlinks { margin-top: 12px; }
+  .d-only { display: none; }
+  .facts { margin-top: 22px; }
+}
